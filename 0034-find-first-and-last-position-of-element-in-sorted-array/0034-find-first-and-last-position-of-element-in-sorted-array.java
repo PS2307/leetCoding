@@ -1,16 +1,23 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int[] arr={-1,-1};
-        if(nums.length==0) return arr;
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]==target){
-                arr[0]=i;break;
-            }
-        }
-        for(int i=nums.length-1;i>=0;i--){
-            if(nums[i]==target){
-                arr[1]=i;break;
-            }
-        }return arr;
+        if(nums.length==0) return new int[]{-1,-1};
+        int left=0,right=nums.length-1;
+        int first=-1,last=-1;
+
+
+        while(left<=right){
+            int mid=left+(right-left)/2;
+            if(nums[mid]==target){
+                first=mid;
+                last=mid;
+                while(first>0 && nums[first-1]==target ){
+                    first--;
+                }while(last<nums.length-1 && nums[last+1]==target){
+                    last++;
+                }break;
+            }else if(nums[mid]<target) left=mid+1;
+            else right=mid-1;
+        }return new int[]{first,last};
+        
     }
 }
