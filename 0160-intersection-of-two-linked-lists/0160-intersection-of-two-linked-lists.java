@@ -28,8 +28,9 @@ public class Solution {
                 set.add(headB);
                 headB=headB.next;
             }
-        }ListNode res=null;
-        return res;
+        }
+       
+        return null;
         
     }
 }
