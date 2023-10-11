@@ -1,31 +1,22 @@
 class Solution {
     public int maxVowels(String s, int k) {
-        int maxVows=0,winVows=0;
-        Set<Character> vowelSet=new HashSet<>();
-        vowelSet.add('a');
-        vowelSet.add('e');
-        vowelSet.add('i');
-        vowelSet.add('o');
-        vowelSet.add('u');
+        int curVows=0,maxVows=0;
+        Set<Character> set=new HashSet<>();
+        set.add('a');set.add('e');set.add('i');set.add('o');set.add('u');
         for(int i=0;i<k;i++){
-            if(vowelSet.contains(s.charAt(i))){
-                winVows++;
+            if(set.contains(s.charAt(i))){
+                curVows++;
             }
-        }
-        maxVows=winVows;
-
+        }maxVows=curVows;
         for(int i=k;i<s.length();i++){
-            if(vowelSet.contains(s.charAt(i-k))){
-                winVows--;
+            if(set.contains(s.charAt(i-k))){
+                curVows--;
             }
-
-            if(vowelSet.contains(s.charAt(i))){
-                winVows++;
+            if(set.contains(s.charAt(i))){
+                curVows++;
             }
-
-            maxVows=Math.max(winVows,maxVows);
-            // if(maxVows==k) return k;
-        }return maxVows;
-        
+            maxVows=Math.max(maxVows,curVows);
+        }
+        return maxVows;
     }
 }
